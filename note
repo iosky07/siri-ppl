@@ -1,0 +1,13 @@
+php artisan make:migration create_officer_table
+php artisan make:migration create_irrigations_table
+php artisan make:migration create_irrigation_details_table
+php artisan make:migration create_terraces_table
+php artisan make:migration create_terrace_neigbors_table
+php artisan make:migration create_maps_table
+
+php artisan krlove:generate:model Officer
+php artisan krlove:generate:model Irrigation
+php artisan krlove:generate:model IrrigationDetail
+php artisan krlove:generate:model Terrace
+php artisan krlove:generate:model TerraceNeighbor
+php artisan krlove:generate:model Map
