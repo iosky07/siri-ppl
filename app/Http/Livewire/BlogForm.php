@@ -38,7 +38,7 @@ class BlogForm extends Component
 
     public function create()
     {
-        $this->blog['slug']=Str::slug($this->blog['title']);
+//        $this->blog['slug']=Str::slug($this->blog['title']);
 //        $this->data['user_id']=Auth::id();
 //        Auth itu mengambil semua data yang aktif
 //        $this->data['map_picture'] = md5($this->data['village']).'.'.$this->file->getClientOriginalExtension();

@@ -14,7 +14,38 @@
             ini dasbor admin
         @endif
         @if(Auth::user()->role!=1)
-            ini dasbor bukan admin
+            <div>
+                <div style="float: left; width: 50%; padding: 20px; height: 300px;">
+                    <img src="{{asset('storage/map/0df01ae7dd51cec48fed56952f40842b.png')}}" class="rounded float-left">
+                </div>
+                <div style="float: left; padding: 20px; width: 50%; height: 300px;">
+                    <form class="form-group col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div>
+                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">1</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">2</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">3</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
             @endif
     </div>
 </x-app-layout>

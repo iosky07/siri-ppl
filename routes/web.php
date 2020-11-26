@@ -3,6 +3,7 @@
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserVerificationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
 use Laravel\Jetstream\Http\Controllers\Livewire\ApiTokenController;
@@ -63,7 +64,8 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
             [
                 'user'=>UserController::class,
                 'map'=>MapController::class,
-                'blog'=>BlogController::class
+                'blog'=>BlogController::class,
+                'user-verification'=> UserVerificationController::class,
             ]
         );
     });

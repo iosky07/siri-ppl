@@ -30,7 +30,7 @@ class User extends Authenticatable
         'password',
         'role',
         'nik',
-        'alamat',
+        'address',
         'nomor_hp',
         'status'
     ];
@@ -70,8 +70,17 @@ class User extends Authenticatable
      */
     public static function search($query)
     {
-        return empty($query) ? static::query()
-            : static::where('name', 'like', '%'.$query.'%')
-                ->orWhere('email', 'like', '%'.$query.'%');
+        return empty($query) ? static::query()->whereStatus('aktif')
+            : static::whereStatus('aktif')->where(function ($q) use ($query) {
+                $q->where('name', 'like', '%'.$query.'%');
+            });
+    }
+
+    public static function searchVerify($query)
+    {
+        return empty($query) ? static::query()->whereStatus(NULL)
+            : static::whereStatus(NULL)->where(function ($q) use ($query) {
+                $q->where('name', 'like', '%'.$query.'%');
+            });
     }
 }

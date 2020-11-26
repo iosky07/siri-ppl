@@ -12,20 +12,12 @@
             "href" => [
                 [
                     "section_icon"=> "fas fa-users",
-                    "section_text" => "User",
+                    "section_text" => "Petugas Irigasi",
                     "section_list" => [
-                        ["href" => "admin.user.index", "text" => "Data User"],
-                        ["href" => "admin.user.create", "text" => "Buat User"]
+                        ["href" => "admin.user-verification.index", "text" => "Verifikasi Petugas Irigasi"],
+                        ["href" => "admin.user.index", "text" => "Data Petugas Irigasi"]
                     ]
-                ]
-            ],
-            "text" => "User",
-            "is_multi" => true,
-        ];
-    array_push($links,$add);
-    $add =
-        [
-            "href" => [
+                ],
                 [
                     "section_icon"=> "fas fa-file",
                     "section_text" => "Artikel",
@@ -33,29 +25,21 @@
                         ["href" => "admin.blog.index", "text" => "Data Artikel"],
                         ["href" => "admin.blog.create", "text" => "Buat Artikel"]
                     ]
-                ]
-            ],
-            "text" => "Artikel",
-            "is_multi" => true,
-        ];
-    array_push($links,$add);
-    $add=
-        [
-            "href" => [
-                [ "section_icon"=>"fas fa-chart-bar",
+                ],
+                [
+                    "section_icon"=>"fas fa-chart-bar",
                     "section_text" => "Denah Sawah",
                     "section_list" => [
                         ["href" => "admin.map.index", "text" => "Data Denah"],
                         ["href" => "admin.map.create", "text" => "Buat Denah"]
-                    ]
                 ]
+               ]
             ],
-            "text" => "Denah Sawah",
+            "text" => "Manajemen",
             "is_multi" => true,
-    ];
-    array_push($links,$add);
+        ];
+        array_push($links, $add);
     }
-
     $navigation_links = array_to_object($links);
 @endphp
 

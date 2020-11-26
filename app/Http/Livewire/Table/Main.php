@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Table;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,13 +12,16 @@ class Main extends Component
 
     public $model;
     public $name;
+    public $userId;
+    public $user;
 
     public $perPage = 10;
     public $sortField = "id";
     public $sortAsc = false;
     public $search = '';
 
-    protected $listeners = [ "deleteItem" => "delete_item" ];
+    protected $listeners = [ "deleteItem" => "delete_item", "verifyItem" => "verification_item" ];
+//    protected $verification = [  ];
 
     public function sortBy($field)
     {
@@ -44,6 +48,25 @@ class Main extends Component
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => route('admin.user.create'),
+                            'create_new_text' => 'Buat User Baru',
+                            'export' => '#',
+                            'export_text' => 'Export'
+                        ]
+                    ])
+                ];
+                break;
+
+            case 'user-verification':
+                $users = $this->model::searchVerify($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.user-verification',
+                    "users" => $users,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('admin.user-verification.create'),
                             'create_new_text' => 'Buat User Baru',
                             'export' => '#',
                             'export_text' => 'Export'
@@ -96,6 +119,25 @@ class Main extends Component
         }
     }
 
+//    public function delete_item ($id)
+//    {
+//        $data = $this->model::find($id);
+//
+//        if (!$data) {
+//            $this->emit("deleteResult", [
+//                "status" => false,
+//                "message" => "Gagal menghapus data " . $this->name
+//            ]);
+//            return;
+//        }
+//
+//        $data->delete();
+//        $this->emit("deleteResult", [
+//            "status" => true,
+//            "message" => "Data " . $this->name . " berhasil dihapus!"
+//        ]);
+//    }
+
     public function delete_item ($id)
     {
         $data = $this->model::find($id);
@@ -103,12 +145,18 @@ class Main extends Component
         if (!$data) {
             $this->emit("deleteResult", [
                 "status" => false,
-                "message" => "Gagal menghapus data " . $this->name
+                "message" => "Gagal menemukan data " . $this->name
             ]);
             return;
         }
 
-        $data->delete();
+//        $data->update('status', '=', 'aktif');
+        $data->where('status', 'NULL')->update(array('status' => 'aktif'));
+//        dd($a);
+//        User::query()
+//            ->where('id', $this->userId)
+//            ->update($)->whereStatus('aktif');
+
         $this->emit("deleteResult", [
             "status" => true,
             "message" => "Data " . $this->name . " berhasil dihapus!"

@@ -31,7 +31,7 @@
 
             <div>
                 <x-jet-label value="{{ __('Alamat') }}" />
-                <x-jet-input class="block mt-1 w-full" type="alamat" name="alamat" :value="old('alamat')" required autofocus autocomplete="alamat" />
+                <x-jet-input class="block mt-1 w-full" type="address" name="address" :value="old('address')" required autofocus autocomplete="address" />
             </div>
 
             <div class="mt-4">

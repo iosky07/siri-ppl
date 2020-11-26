@@ -34,9 +34,9 @@
                     <td>{{ $user->status }}</td>
 {{--                    <td>{{ $user->created_at->format('d M Y H:i') }}</td>--}}
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ route('admin.user.show',$user->id) }}" class="btn btn-outline-primary">detail</a>
+                        <a role="button" href="{{ route('admin.user.show', $user->id) }}" class="btn btn-outline-primary">Detail</a>
 {{--                        @if(Auth::user()->role==1)--}}
-{{--                        <a role="button" x-on:click.prevent="deleteItem" class="btn btn-outline-warning">verifikasi</i></a>--}}
+                        <a role="button" x-on:click.prevent="deleteItem" class="btn btn-outline-warning">verifikasi</i></a>
                         {{--                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>--}}
 {{--                        @endif--}}
                     </td>
