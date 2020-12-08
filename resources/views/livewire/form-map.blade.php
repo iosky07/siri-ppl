@@ -6,6 +6,7 @@
 {{--                   wire:model="data.village" required/>--}}
 
                 <select name="role" id="role" wire:model="data.village" class="form-control">
+                    <option value="#">--Pilih Data--</option>
                     <option value="Cakru">Cakru</option>
                     <option value="Wonorejo">Wonorejo</option>
                     <option value="Kencong">Kencong</option>

@@ -36,8 +36,8 @@
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="{{ route('admin.user.show', $user->id) }}" class="btn btn-outline-primary">Detail</a>
 {{--                        @if(Auth::user()->role==1)--}}
-                        <a role="button" x-on:click.prevent="deleteItem" class="btn btn-outline-warning">verifikasi</i></a>
-                        {{--                        <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>--}}
+                        <a role="button" x-on:click.prevent="verifyItem" class="btn btn-outline-warning">Verifikasi</a>
+{{--                                                <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>--}}
 {{--                        @endif--}}
                     </td>
                 </tr>

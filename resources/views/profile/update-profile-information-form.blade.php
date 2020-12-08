@@ -41,13 +41,13 @@
             <x-jet-input-error for="nomor_hp" class="mt-2" />
         </div>
 
-        @if(Auth::user()->role==2)
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Status') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.status" autocomplete="status" />
-            <x-jet-input-error for="status" class="mt-2" />
-        </div>
-        @endif
+{{--        @if(Auth::user()->role==2)--}}
+{{--        <div class="col-span-6 sm:col-span-4">--}}
+{{--            <x-jet-label for="name" value="{{ __('Status') }}" />--}}
+{{--            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.status" autocomplete="status" />--}}
+{{--            <x-jet-input-error for="status" class="mt-2" />--}}
+{{--        </div>--}}
+{{--        @endif--}}
 
     </x-slot>
 

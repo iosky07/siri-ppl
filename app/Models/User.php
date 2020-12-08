@@ -70,7 +70,7 @@ class User extends Authenticatable
      */
     public static function search($query)
     {
-        return empty($query) ? static::query()->whereStatus('aktif')
+        return empty($query) ? static::query()->whereStatus('aktif')->whereRole(2)
             : static::whereStatus('aktif')->where(function ($q) use ($query) {
                 $q->where('name', 'like', '%'.$query.'%');
             });
@@ -78,7 +78,7 @@ class User extends Authenticatable
 
     public static function searchVerify($query)
     {
-        return empty($query) ? static::query()->whereStatus(NULL)
+        return empty($query) ? static::query()->whereStatus(NULL)->whereRole(3)
             : static::whereStatus(NULL)->where(function ($q) use ($query) {
                 $q->where('name', 'like', '%'.$query.'%');
             });

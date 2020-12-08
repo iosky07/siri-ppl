@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Table;
 
+use App\Models\Terrace;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -47,10 +49,10 @@ class Main extends Component
                     "users" => $users,
                     "data" => array_to_object([
                         'href' => [
-                            'create_new' => route('admin.user.create'),
-                            'create_new_text' => 'Buat User Baru',
-                            'export' => '#',
-                            'export_text' => 'Export'
+//                            'create_new' => route('admin.user.create'),
+//                            'create_new_text' => 'Buat User Baru',
+//                            'export' => '#',
+//                            'export_text' => 'Export'
                         ]
                     ])
                 ];
@@ -66,10 +68,10 @@ class Main extends Component
                     "users" => $users,
                     "data" => array_to_object([
                         'href' => [
-                            'create_new' => route('admin.user-verification.create'),
-                            'create_new_text' => 'Buat User Baru',
-                            'export' => '#',
-                            'export_text' => 'Export'
+//                            'create_new' => route('admin.user-verification.create'),
+//                            'create_new_text' => 'Buat User Baru',
+//                            'export' => '#',
+//                            'export_text' => 'Export'
                         ]
                     ])
                 ];
@@ -79,20 +81,36 @@ class Main extends Component
                 $blogs = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
+                if (Auth::user()->role==1) {
+                    return [
+                        "view" => 'livewire.table.blog',
+                        "blogs" => $blogs,
+                        "data" => array_to_object([
+                            'href' => [
+                                'create_new' => route('admin.blog.create'),
+                                'create_new_text' => 'Buat Artikel Baru',
+                                'export' => '#',
+                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                } else {
+                    return [
+                        "view" => 'livewire.table.blog',
+                        "blogs" => $blogs,
+                        "data" => array_to_object([
+                            'href' => [
+//                                'create_new' => route('admin.blog.create'),
+//                                'create_new_text' => 'Buat Artikel Baru',
+//                                'export' => '#',
+//                                'export_text' => 'Export'
+                            ]
+                        ])
+                    ];
+                    break;
+                }
 
-                return [
-                    "view" => 'livewire.table.blog',
-                    "blogs" => $blogs,
-                    "data" => array_to_object([
-                        'href' => [
-                            'create_new' => route('admin.blog.create'),
-                            'create_new_text' => 'Buat Artikel Baru',
-                            'export' => '#',
-                            'export_text' => 'Export'
-                        ]
-                    ])
-                ];
-                break;
 
                 case 'map':
                 $maps = $this->model::search($this->search)
@@ -113,34 +131,80 @@ class Main extends Component
                 ];
                 break;
 
+            case 'region-map':
+                $maps = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.region-map',
+                    "maps" => $maps,
+                    "data" => array_to_object([
+                        'href' => [
+//                            'create_new' => route('admin.map.create'),
+//                            'create_new_text' => 'Buat Region Sawah',
+//                            'export' => '#',
+//                            'export_text' => 'Export'
+                        ]
+                    ])
+                ];
+                break;
+
+            case 'region-terrace':
+                $terraces = Terrace::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.region-terrace',
+                    "terraces" => $terraces,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('admin.region-terrace.create'),
+                            'create_new_text' => 'Buat Petak Sawah',
+//                            'export' => '#',
+//                            'export_text' => 'Export'
+                        ]
+                    ])
+                ];
+                break;
+
             default:
                 # code...
                 break;
         }
     }
 
-//    public function delete_item ($id)
-//    {
-//        $data = $this->model::find($id);
-//
-//        if (!$data) {
-//            $this->emit("deleteResult", [
-//                "status" => false,
-//                "message" => "Gagal menghapus data " . $this->name
-//            ]);
-//            return;
-//        }
-//
-//        $data->delete();
-//        $this->emit("deleteResult", [
-//            "status" => true,
-//            "message" => "Data " . $this->name . " berhasil dihapus!"
-//        ]);
-//    }
-
     public function delete_item ($id)
     {
         $data = $this->model::find($id);
+
+        if (!$data) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Gagal menghapus data " . $this->name
+            ]);
+            return;
+        }
+
+        $data->delete();
+        $this->emit("deleteResult", [
+            "status" => true,
+            "message" => "Data " . $this->name . " berhasil dihapus!"
+        ]);
+    }
+
+
+    public function render()
+    {
+        $data = $this->get_pagination_data();
+
+        return view($data['view'], $data);
+    }
+    public function verification_item($id){
+
+        $data = $this->model::find($id);
+        User::find($data->id)->update(['role'=>2, 'status'=>'aktif']);
 
         if (!$data) {
             $this->emit("deleteResult", [
@@ -151,22 +215,16 @@ class Main extends Component
         }
 
 //        $data->update('status', '=', 'aktif');
-        $data->where('status', 'NULL')->update(array('status' => 'aktif'));
+
+//        $this->model->whereId($id)->whereStatus(NULL)->update(array('status' => 'aktif', 'role' => '2'));
 //        dd($a);
 //        User::query()
 //            ->where('id', $this->userId)
 //            ->update($)->whereStatus('aktif');
 
-        $this->emit("deleteResult", [
+        $this->emit("verifyResult", [
             "status" => true,
-            "message" => "Data " . $this->name . " berhasil dihapus!"
+            "message" => "Data " . $this->name . " berhasil diverifikasi!"
         ]);
-    }
-
-    public function render()
-    {
-        $data = $this->get_pagination_data();
-
-        return view($data['view'], $data);
     }
 }

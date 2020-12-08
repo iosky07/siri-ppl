@@ -19373,7 +19373,25 @@ function dataTableController(id) {
           Livewire.emit('deleteItem', _this.id);
         }
       });
-    }
+    },
+
+      verifyItem: function verifyItem() {
+          var _this = this;
+
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, verify it!'
+          }).then(function (result) {
+              if (result.isConfirmed) {
+                  Livewire.emit('verifyItem', _this.id);
+              }
+          });
+      }
   };
 }
 
@@ -19387,6 +19405,13 @@ function dataTableMainController() {
           Swal.fire('Error!', result.message, 'error');
         }
       });
+        Livewire.on('verifyResult', function (result) {
+            if (result.status) {
+                Swal.fire('Verified!', result.message, 'success');
+            } else {
+                Swal.fire('Error!', result.message, 'error');
+            }
+        });
     }
   };
 }

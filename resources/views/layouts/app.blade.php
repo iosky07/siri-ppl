@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{asset('js/sweetalert.min.js')}}"></script>
         <livewire:styles />
 
         <!-- Scripts -->
@@ -73,7 +73,7 @@
         <script defer src="{{asset('vendor/summernote/dist/summernote-bs4.js')}}"></script>
         <script defer src="{{asset('vendor/daterangepicker/daterangepicker.js')}}"></script>
         <script defer src="{{asset('vendor/chart.js/dist/Chart.min.js')}}"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+        <script src="{{asset('js/numeral.min.js')}}"></script>
         {{--<script src="{{asset('assets/bootstrap-daterangepicker/daterangepicker.js')}}"></script>--}}
 
         <script src="{{ asset('stisla/js/stisla.js') }}"></script>

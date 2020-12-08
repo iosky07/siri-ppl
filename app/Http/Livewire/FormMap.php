@@ -40,7 +40,7 @@ class FormMap extends Component
         $this->data['slug']=Str::slug($this->data['village']);
 //        $this->data['user_id']=Auth::id();
 //        Auth itu mengambil semua data yang aktif
-        $this->data['map_picture'] = md5($this->data['village']).'.'.$this->file->getClientOriginalExtension();
+        $this->data['map_picture'] = md5(rand()).'.'.$this->file->getClientOriginalExtension();
         $this->file->storeAs('public/map', $this->data['map_picture']);
 //        unset($this->data['thumbnail_photo']);
         Map::create($this->data);

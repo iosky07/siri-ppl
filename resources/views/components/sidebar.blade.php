@@ -1,12 +1,13 @@
 @php
-    $links=[
+    use Illuminate\Support\Facades\Auth;$links=[
         [
             "href" => "admin.dashboard",
             "text" => "Dashboard",
             "is_multi" => false,
         ]
         ];
-    if (Auth::user()->role==1){
+
+if (Auth::user()->role==1) {
     $add =
         [
             "href" => [
@@ -19,27 +20,49 @@
                     ]
                 ],
                 [
-                    "section_icon"=> "fas fa-file",
-                    "section_text" => "Artikel",
-                    "section_list" => [
-                        ["href" => "admin.blog.index", "text" => "Data Artikel"],
-                        ["href" => "admin.blog.create", "text" => "Buat Artikel"]
-                    ]
-                ],
-                [
+                        "section_icon"=> "fas fa-file",
+                        "section_text" => "Artikel",
+                        "section_list" => [
+                            ["href" => "admin.blog.index", "text" => "Data Artikel"],
+                            ["href" => "admin.blog.create", "text" => "Buat Artikel"]
+                        ]
+                    ],
+                    [
                     "section_icon"=>"fas fa-chart-bar",
-                    "section_text" => "Denah Sawah",
+                    "section_text" => "Data Sawah",
                     "section_list" => [
+//                        ["href" => "admin.region-map.index", "text" => "Data Wilayah"],
                         ["href" => "admin.map.index", "text" => "Data Denah"],
                         ["href" => "admin.map.create", "text" => "Buat Denah"]
                 ]
-               ]
-            ],
-            "text" => "Manajemen",
+                ]
+             ],
+             "text" => "Manajemen",
+            "is_multi" => true,
+        ];
+    }
+    else if  (Auth::user()->role==2) {
+    $add =
+        [
+            "href" => [
+                [
+                        "section_icon"=> "fas fa-file",
+                        "section_text" => "Artikel",
+                        "section_list" => [
+                            ["href" => "admin.blog.index", "text" => "Data Artikel"],
+                        ]
+                    ],
+
+             ],
+             "text" => "Manajemen",
             "is_multi" => true,
         ];
         array_push($links, $add);
     }
+    if (Auth::user()->role==1){
+         array_push($links, $add);
+    }
+
     $navigation_links = array_to_object($links);
 @endphp
 

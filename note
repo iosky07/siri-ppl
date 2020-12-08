@@ -11,3 +11,6 @@ php artisan krlove:generate:model IrrigationDetail
 php artisan krlove:generate:model Terrace
 php artisan krlove:generate:model TerraceNeighbor
 php artisan krlove:generate:model Map
+
+php artisan make:migration create_regions_table
+php artisan make:migration create_maps_table

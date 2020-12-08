@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer $id
  * @property integer $map_id
- * @property int $large
- * @property int $high
- * @property int $distance
+ * @property int $width
+ * @property int $height
+ * @property string $node
  * @property string $created_at
  * @property string $updated_at
  * @property Map $map
  * @property IrrigationDetail[] $irrigationDetails
  * @property Irrigation[] $irrigations
  * @property TerraceNeighbor[] $terraceNeighbors
-// * @property TerraceNeighbor[] $terraceNeighbors
  */
 class Terrace extends Model
 {
@@ -30,7 +29,7 @@ class Terrace extends Model
     /**
      * @var array
      */
-    protected $fillable = ['map_id', 'large', 'high', 'distance', 'created_at', 'updated_at'];
+    protected $fillable = ['map_id', 'width', 'height', 'node', 'plant', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -62,6 +61,12 @@ class Terrace extends Model
     public function terraceNeighbors()
     {
         return $this->hasMany('App\Models\TerraceNeighbor', 'neighbor_id');
+    }
+
+    public static function search($query,$id)
+    {
+//        return empty($query) ? static::query()->whereMapId($id)
+//            : static::whereMapId($id)->where('node', 'like', '%'.$query.'%');
     }
 
 //    /**

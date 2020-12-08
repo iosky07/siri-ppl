@@ -12,11 +12,11 @@
                    wire:model="blog.writter" required/>
         </div>
 
-        <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Tanggal Publikasi')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                   wire:model="blog.publish_date" required/>
-        </div>
+{{--        <div class="form-group col-span-6 sm:col-span-5">--}}
+{{--            <label for="name">{{__('Tanggal Publikasi')}}</label>--}}
+{{--            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+{{--                   wire:model="blog.publish_date" required/>--}}
+{{--        </div>--}}
 
         <div class="form-group col-span-6 sm:col-span-5">
             <label for="name">{{__('Isi Konten')}}</label>

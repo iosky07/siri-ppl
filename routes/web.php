@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\RegionMapController;
+use App\Http\Controllers\RegionTerraceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserVerificationController;
@@ -59,13 +61,24 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
 //    Route::view('/user/new', "pages.user.create")->name('user.new');
 //    Route::view('/user/edit/{userId}', "pages.user.edit")->name('user.edit');
 
+    Route::middleware(['checkRole:1'])->group(function (){
+        Route::resources(
+            [
+                'user-verification'=> UserVerificationController::class,
+            ]
+        );
+        Route::get('/map/{id}/create-terrace',[MapController::class,'createTerrace'])->name('map.create-terrace');
+        Route::get('/map/{id}/edit-terrace',[MapController::class,'editTerrace'])->name('map.edit-terrace');
+        Route::get('/map/{id}/delete-terrace',[MapController::class,'deleteTerrace'])->name('map.delete-terrace');
+    });
     Route::middleware(['checkRole:1,2'])->group(function (){
         Route::resources(
             [
                 'user'=>UserController::class,
                 'map'=>MapController::class,
                 'blog'=>BlogController::class,
-                'user-verification'=> UserVerificationController::class,
+                'region-map'=> RegionMapController::class,
+                'region-terrace'=> RegionTerraceController::class,
             ]
         );
     });
