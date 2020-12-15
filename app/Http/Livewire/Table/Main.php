@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Table;
 
+use App\Models\Map;
 use App\Models\Terrace;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -143,6 +144,26 @@ class Main extends Component
                         'href' => [
 //                            'create_new' => route('admin.map.create'),
 //                            'create_new_text' => 'Buat Region Sawah',
+//                            'export' => '#',
+//                            'export_text' => 'Export'
+                        ]
+                    ])
+                ];
+                break;
+
+            case 'irrigation-dashboard':
+//                dd($this->model);
+                $dashboard = Map::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.irrigation-dashboard',
+                    "dashboard" => $dashboard,
+                    "data" => array_to_object([
+                        'href' => [
+//                            'create_new' => route('admin.map.create'),
+//                            'create_new_text' => 'Buat Denah Sawah',
 //                            'export' => '#',
 //                            'export_text' => 'Export'
                         ]

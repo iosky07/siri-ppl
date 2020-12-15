@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IrrigationDashboard;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\RegionMapController;
 use App\Http\Controllers\RegionTerraceController;
@@ -24,10 +25,11 @@ use Laravel\Jetstream\Jetstream;
 |
 */
 
-Route::get('/dashboard', function () {
-    return redirect(route('admin.dashboard'));
-});
-
+//Route::get('/dashboard', function () {
+//    return redirect(route('admin.dashboard'));
+//});
+//Route::get('/dashboard', [IrrigationDashboard::class, 'index'])->name('admin.dashboard');
+Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('admin.dashboard');
 Route::get('/', function () {
     return view('welcome');
 });
