@@ -1,9 +1,22 @@
 <div>
     <form wire:submit.prevent="{{$action}}"  x-init="myAlert()">
+
+        {{--        <div class="form-group col-span-6 sm:col-span-5">--}}
+        {{--            <label for="name">{{__('ID Map')}}</label>--}}
+        {{--            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+        {{--                   value="{{$mapId}}" disabled/>--}}
+        {{--        </div>--}}
+
         <div class="form-group col-span-6 sm:col-span-5">
             <label for="name">{{__('Node')}}</label>
             <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
                    wire:model="terrace.node" required/>
+        </div>
+
+        <div class="form-group col-span-6 sm:col-span-5">
+            <label for="name">{{__('Titik Koordinat')}}</label>
+            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
+                   wire:model="terrace.coordinate" required/>
         </div>
 
         <div class="form-group col-span-6 sm:col-span-5">
@@ -24,11 +37,6 @@
                    wire:model="terrace.plant" required/>
         </div>
 
-        <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('ID Map')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                   value="{{$mapId}}" disabled/>
-        </div>
 
         <div class="form-group col-span-6 sm:col-span-5"></div>
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>

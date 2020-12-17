@@ -20,9 +20,8 @@ class UserController extends Controller
         return view('pages.user.edit');
     }
     public function show($id){
-        $users = DB::table('users')
-            ->where('id', '=', $id)
-            ->get();
-        return view('pages.user.show', ['users' => $users]);
+        $data = User::find($id);
+//        dd($users);
+        return view('pages.user.show', compact('data'));
     }
 }

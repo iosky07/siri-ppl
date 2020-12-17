@@ -2,11 +2,9 @@
     <form wire:submit.prevent="{{$action}}"  x-init="myAlert()">
         <div class="form-group col-span-6 sm:col-span-5">
             <label for="name">{{__('Pilih Desa')}}</label>
-{{--            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"--}}
-{{--                   wire:model="data.village" required/>--}}
 
-                <select name="role" id="role" wire:model="data.village" class="form-control">
-                    <option value="#">--Pilih Data--</option>
+                <select name="role" id="role" wire:model="data.village" class="form-control" required="required">
+                    <option value="">--Pilih Data--</option>
                     <option value="Cakru">Cakru</option>
                     <option value="Wonorejo">Wonorejo</option>
                     <option value="Kencong">Kencong</option>

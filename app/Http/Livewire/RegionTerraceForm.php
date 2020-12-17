@@ -4,7 +4,9 @@
 namespace App\Http\Livewire;
 
 
+use App\Models\Map;
 use App\Models\Terrace;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class RegionTerraceForm extends Component
@@ -28,6 +30,7 @@ class RegionTerraceForm extends Component
 
             $this->terrace = [
                 "node" => $terrace->node,
+                "coordinate" => $terrace->coordinate,
                 "width" => $terrace->width,
                 "height" => $terrace->height,
                 "plant" => $terrace->plant,
@@ -38,6 +41,9 @@ class RegionTerraceForm extends Component
     public function create()
     {
         $this->terrace['map_id']=$this->mapId;
+        $user =Map::whereId($this->mapId)->pluck('user_id');
+        $this->terrace['user_id'] = $user[0];
+//        dd($this->terrace['user_id']);
         Terrace::create($this->terrace);
 
         $this->reset('terrace');
@@ -47,6 +53,8 @@ class RegionTerraceForm extends Component
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+//        dd($this->mapId);
+        return redirect(route('admin.map.show', $this->mapId));
 //        $this->emit('redirect');
     }
 
@@ -73,6 +81,7 @@ class RegionTerraceForm extends Component
         $this->resetErrorBag();
         $this->validate();
 
+//        Map::find($this->mapId);
         Terrace::find($this->dataId)->update($this->terrace);
 
         $this->emit('swal:alert', [
@@ -81,6 +90,8 @@ class RegionTerraceForm extends Component
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+//        dd($this->mapId);
+//        return redirect(route('admin.map.show', $this->mapId));
         $this->emit('redirect');
     }
 }

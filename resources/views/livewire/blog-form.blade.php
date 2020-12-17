@@ -18,16 +18,13 @@
 {{--                   wire:model="blog.publish_date" required/>--}}
 {{--        </div>--}}
 
-        <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Isi Konten')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                   wire:model="blog.content" required/>
-        </div>
-
-        <div class="form-group col-span-6 sm:col-span-5">
-            <label for="name">{{__('Publisher')}}</label>
-            <input id="name" type="text" class="mt-1 block w-full form-control shadow-none"
-                   wire:model="blog.publisher" required/>
+        <div class="form-group col-span-6 sm:col-span-5" wire:ignore>
+            <label for="detail">{{__('Isi Konten')}}</label>
+            <div class="col-sm-12 col-md-12" >
+                <textarea type="text" input="description" id="summernote" class="form-control summernote" required>
+                    {{$blog['content']}}
+                </textarea>
+            </div>
         </div>
 
         <div class="form-group col-span-6 sm:col-span-5"></div>
@@ -58,5 +55,30 @@
             });
         };
         window.addEventListener('turbolinks:load', Datepicker);
+    </script>
+    <script type="text/javascript">
+        document.addEventListener('livewire:load', function () {
+
+            $('.summernote').summernote({
+
+                tabsize: 2,
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                    @this.set('blog.content', contents)
+                    }
+                }
+
+            })
+        });
     </script>
 </div>

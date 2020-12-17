@@ -9,18 +9,42 @@
         </div>
         </div>
         <div class="section-body">
-            @foreach($users as $data)
-                <div class="form-group col-span-6 sm:col-span-5">
-                    ID : {{$data->id}}<br>
-                    Nama : {{$data->name}}<br>
-                    Email : {{$data->email}}<br>
-                    NIK : {{$data->nik}}<br>
-                    Alamat : {{$data->address}}<br>
-                    Nomor HP : {{$data->nomor_hp}}<br>
-                    Status : {{$data->status}}
+            <div class="card">
+                <div class="card-body">
+                    <b>
+                        <div class="row">
+                            <div class="col-md-2">ID Petugas</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->id}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                            <div class="col-md-2">Nama</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->name}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                            <div class="col-md-2">Email</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->email}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                            <div class="col-md-2">NIK</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->nik}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                            <div class="col-md-2">Alamat</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->address}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                            <div class="col-md-2">Nomor HP</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->nomor_hp}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                            <div class="col-md-2">Status</div>
+                            <div class="">:</div>
+                            <div class="col-md-9">{{$data->status}}</div>
+                            <div class="w-100" style="margin-bottom: 15px"></div>
+                        </div>
+                    </b>
                 </div>
-            @endforeach
-            {{--        <livewire:create-user action="showUser" :userId="request()->user" />--}}
+            </div>
         </div>
     </x-slot>
 

@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $slug
  * @property string $writter
  * @property string $publish_date
- * @property string $publisher
  * @property string $content
  * @property int $view
  * @property string $thumbnail
@@ -29,7 +28,7 @@ class Blog extends Model
     /**
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'writter', 'publish_date', 'publisher', 'content', 'view', 'thumbnail', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'slug', 'writter', 'publish_date', 'content', 'view', 'thumbnail', 'created_at', 'updated_at'];
 
     public static function search($query)
     {

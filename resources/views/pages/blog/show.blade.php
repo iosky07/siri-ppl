@@ -10,13 +10,19 @@
         </div>
         <div class="section-body">
             @foreach($blogs as $data)
-                <div class="form-group col-span-6 sm:col-span-5">
-{{--                    ID : {{$data->id}}<br>--}}
-                    Judul : {{$data->title}}<br>
-                    Penulis : {{$data->writter}}<br>
-                    Tanggal Publikasi : {{$data->publish_date}}<br>
-                    Konten : {{$data->content}}<br>
-                    Publisher : {{$data->publisher}}
+                <div class="section-body">
+                    <h2 class="section-title"> {{$data->title}}</h2>
+                   <div class="card">
+                        <div class="card-header" >
+                            <h4 class="col-lg-6"></h4><h5 class="col-lg-6 text-right">Tanggal Publikasi : {{$data->publish_date}}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>{!! $data->content !!}</p>
+                        </div>
+                        <div class="card-footer bg-whitesmoke">
+                            <h5>Penulis : {{$data->writter}}</h5>
+                        </div>
+                    </div>
                 </div>
             @endforeach
             {{--        <livewire:create-user action="showUser" :userId="request()->user" />--}}

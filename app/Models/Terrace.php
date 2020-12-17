@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $width
  * @property int $height
  * @property string $node
+ * @property string $coordinate
+ * @property string $user_id
  * @property string $created_at
  * @property string $updated_at
  * @property Map $map
@@ -29,7 +31,7 @@ class Terrace extends Model
     /**
      * @var array
      */
-    protected $fillable = ['map_id', 'width', 'height', 'node', 'plant', 'created_at', 'updated_at'];
+    protected $fillable = ['map_id', 'width', 'height', 'node', 'coordinate', 'user_id', 'plant', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

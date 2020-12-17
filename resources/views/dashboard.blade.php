@@ -43,7 +43,7 @@
         @if(Auth::user()->role==2)
             <div class="card">
                 <div class="card-header">
-                    Featured
+                    <h4 class="col-lg-6">PENCARIAN RUTE IRIGASI</h4>
                 </div>
                 <div class="card-body">
                     <livewire:dashboard/>

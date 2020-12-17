@@ -24,7 +24,7 @@ if (Auth::user()->role==1) {
                         "section_text" => "Artikel",
                         "section_list" => [
                             ["href" => "admin.blog.index", "text" => "Data Artikel"],
-                            ["href" => "admin.blog.create", "text" => "Buat Artikel"]
+//                            ["href" => "admin.blog.create", "text" => "Buat Artikel"]
                         ]
                     ],
                     [
@@ -33,7 +33,7 @@ if (Auth::user()->role==1) {
                     "section_list" => [
 //                        ["href" => "admin.region-map.index", "text" => "Data Wilayah"],
                         ["href" => "admin.map.index", "text" => "Data Denah"],
-                        ["href" => "admin.map.create", "text" => "Buat Denah"]
+//                        ["href" => "admin.map.create", "text" => "Buat Denah"]
                 ]
                 ]
              ],

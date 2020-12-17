@@ -59,6 +59,7 @@ class MapController extends Controller
     }
 
     public function editTerrace($id) {
+//        dd($id);
         return view('pages.region-terrace.edit', compact('id'));
     }
 

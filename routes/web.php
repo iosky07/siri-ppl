@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IrrigationDashboard;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\RegionMapController;
@@ -29,7 +30,7 @@ use Laravel\Jetstream\Jetstream;
 //    return redirect(route('admin.dashboard'));
 //});
 //Route::get('/dashboard', [IrrigationDashboard::class, 'index'])->name('admin.dashboard');
-Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('admin.dashboard');
+Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -57,7 +58,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth:sanctum','web', 'verif
         });
     });
 
-    Route::view('/dashboard', "dashboard")->name('dashboard');
+//    Route::view('/dashboard', "dashboard")->name('dashboard');
 //    Route::middleware(['checkRole:1']){}
 //    Route::get('/user', [ UserController::class, "index" ])->name('user');
 //    Route::view('/user/new', "pages.user.create")->name('user.new');

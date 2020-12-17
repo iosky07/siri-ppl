@@ -17,8 +17,8 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Node</th>
+                <th scope="col">Titik Koordinat</th>
                 <th scope="col">Width</th>
                 <th scope="col">Height</th>
                 <th scope="col">Tanaman</th>
@@ -28,15 +28,15 @@
             <tbody>
             @foreach($map->terraces as $t)
                 <tr>
-                    <td>{{$t->id}}</td>
                     <td>{{$t->node}}</td>
+                    <td>{{$t->coordinate}}</td>
                     <td>{{$t->width}}</td>
                     <td>{{$t->height}}</td>
                     <td>{{$t->plant}}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ route('admin.map.edit-terrace', $t->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                        <a role="button" href="{{ route('admin.map.edit-terrace', $t->id) }}" class="btn btn-warning"><i class="fa fa-pen"></i> Edit</a>
                         {{--                        <a role="button" href="{{ route('admin.test.show', $test->id) }}" class="mr-3"><i class="fa fa-16px fa-eye"></i></a>--}}
-                        <a role="button" href="{{ route('admin.map.delete-terrace', $t->id) }}"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                        <a role="button" href="{{ route('admin.map.delete-terrace', $t->id) }}" class="btn btn-danger"><i class="fa fa-16px fa-trash"></i> Hapus</a>
 
                     </td>
                 </tr>

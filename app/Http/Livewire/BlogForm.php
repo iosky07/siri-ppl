@@ -23,6 +23,7 @@ class BlogForm extends Component
 
     public function mount ()
     {
+        $this->blog['content']='';
         if (!!$this->dataId) {
             $blog = Blog::findOrFail($this->dataId);
 
@@ -30,7 +31,6 @@ class BlogForm extends Component
                 "title" => $blog->title,
                 "writter" => $blog->writter,
                 "publish_date" => $blog->publish_date,
-                "publisher" => $blog->publisher,
                 "content" => $blog->content,
             ];
         }
@@ -44,15 +44,20 @@ class BlogForm extends Component
 //        $this->data['map_picture'] = md5($this->data['village']).'.'.$this->file->getClientOriginalExtension();
 //        $this->file->storeAs('public/map', $this->data['map_picture']);
 //        unset($this->data['thumbnail_photo']);
+//        dd($this->blog);
         Blog::create($this->blog);
 
-        $this->reset('blog');
+//        $this->reset('blog');
+//        $this->blog['content']='';
+
+//        $this->reset('blog');
         $this->emit('swal:alert', [
             'type'    => 'success',
             'title'   => 'Data berhasil masuk',
             'timeout' => 3000,
             'icon'=>'success'
         ]);
+        return redirect(route('admin.blog.index'));
     }
 
     public function getRules(){
@@ -77,9 +82,8 @@ class BlogForm extends Component
     }
 
     public function update() {
-        $this->resetErrorBag();
-        $this->validate();
-
+//        $this->resetErrorBag();
+//        $this->validate();
 
 //        $this->blog['map_picture'] = md5(rand()).'.'.$this->file->getClientOriginalExtension();
 //        if ($this->file !=null){

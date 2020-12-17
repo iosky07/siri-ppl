@@ -2,10 +2,6 @@
     <x-data-table :data="$data" :model="$maps">
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('id')" role="button" href="#">
-                    ID
-                    @include('components.sort-icon', ['field' => 'id'])
-                </a></th>
                 <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
                     Name
                     @include('components.sort-icon', ['field' => 'name'])
@@ -24,7 +20,6 @@
         <x-slot name="body">
             @foreach ($maps as $map)
                 <tr x-data="window.__controller.dataTableController({{ $map->id }})">
-                    <td>{{ $map->id }}</td>
                     <td>{{ $map->name }}</td>
 {{--                    <td><img src="{{ asset('storage/map/'.$map->map_picture) }}" alt="" style="max-height: 100px"></td>--}}
 {{--                    <td>{{ $map->created_at->format('d M Y H:i') }}</td>--}}
