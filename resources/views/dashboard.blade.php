@@ -40,7 +40,7 @@
                 </div>
             </div>
         @endif
-        @if(Auth::user()->role==2)
+        @if(Auth::user()->role==2 and Auth::user()->status=='aktif')
             <div class="card">
                 <div class="card-header">
                     <h4 class="col-lg-6">PENCARIAN RUTE IRIGASI</h4>
@@ -50,7 +50,6 @@
                     {{--                        <div class="col-md-6" style="margin-right: auto">Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</div>--}}
                 </div>
                 <div class="card-footer text-muted">
-                    2 days ago
                 </div>
             </div>
             {{--            <div>--}}
@@ -71,10 +70,26 @@
             {{--                        <button type="submit" class="btn btn-primary">Submit</button>--}}
             {{--                    </form>--}}
             {{--                </div>--}}
-    </div>
-    @endif
-    @if(Auth::user()->role==3)
-        Akun Anda Belum Terverifikasi
+{{--    </div>--}}
+        @endif
+
+        @if(Auth::user()->role==2 and Auth::user()->status==NULL)
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="col-lg-6">PENCARIAN RUTE IRIGASI</h4>
+                    </div>
+                    <div class="card-body">
+{{--                        <livewire:dashboard/>--}}
+                        {{--                        <div class="col-md-6" style="margin-right: auto">Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.</div>--}}
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+        @endif
+
+        @if(Auth::user()->role==3)
+            Akun Anda Belum Terverifikasi
         @endif
         </div>
 </x-app-layout>

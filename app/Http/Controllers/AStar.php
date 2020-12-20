@@ -36,7 +36,7 @@ class AStar
     {
         $this->_start = $start;
         $this->_end = $end;
-        $this->_node1 = array();
+//        $this->_node1 = array();
         $this->_x = 26;
         $this->_y = 41;
         $this->_num = 70;
@@ -276,15 +276,18 @@ class AStar
     public function displayPic()
     {
         $a='';
+        $b='';
 //        header('content-type:text/html;charset=utf-8');
         $a=$a.'Dari Start ke End, latar belakang hijau mewakili jalur terpendek, dan latar belakang hitam mewakili rintangan.<br /><br />';
         $step = count($this->route) - 1;
 //        $a=$a.($step > 0) ? '<font color="green">Total ' . $step . ' Langkah</font>' : '<font color="red">Tidak terjangkau!</font>';
         if ($step > 0){
-            $a=$a.'<font color="green">Total ' . $step*5 . ' meter</font>';
-        }else{
-            $a=$a.'<font color="red">Tidak terjangkau!</font>';
+//            $a=$a.'<font color="green">Total ' . $step*5 . ' meter</font>';
+            $b = $step*5;
         }
+//        else{
+//            $a=$a.'<font color="red">Tidak terjangkau!</font>';
+//        }
         $a=$a.'<table border="1">';
         for ($y = 1; $y <= $this->_y; $y++) {
             $a=$a. '<tr>';
@@ -310,7 +313,7 @@ class AStar
             $a=$a. '</tr>';
         }
         $a=$a.'</table>';
-        return $a;
+        return [$a,$b];
     }
 
 }

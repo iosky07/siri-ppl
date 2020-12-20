@@ -19,19 +19,26 @@ class Dashboard extends Component
     public $map_picture;
 
     public function mount(){
-        $map = Map::whereUserId(Auth::id())->pluck('map_picture');
-        $this->map_picture = $map[0];
+//        if (Auth::user()->status==NULL) {
+//
+//        }
+        if (Auth::user()->status=='aktif') {
+            $map = Map::whereUserId(Auth::id())->pluck('map_picture');
+            $this->map_picture = $map[0];
 //        dd($this->map_picture[0]);
-        $this->terraces = Terrace::whereUserId(Auth::id())->get();
-        $config = array(
-            'start' => array(2,2),
-            'end' => array(2,2),
-            'x' => 30,
-            'y' => 20,
-            'disable_num' => 70,
-        );
-        $a = new aStar($config['start'], $config['end'], $config['x'], $config['y'], $config['disable_num']);
-        $this->some = $a->displayPic();
+            $this->terraces = Terrace::whereUserId(Auth::id())->get();
+            $config = array(
+                'start' => array(2,2),
+                'end' => array(2,2),
+                'x' => 30,
+                'y' => 20,
+                'disable_num' => 70,
+            );
+            $a = new aStar($config['start'], $config['end'], $config['x'], $config['y'], $config['disable_num']);
+//            dd($a);
+            $this->some = $a->displayPic();
+//            $this->some2 = $b->displayPic();
+        }
     }
 
 //    protected $rules=[

@@ -14,3 +14,5 @@ php artisan krlove:generate:model Map
 
 php artisan make:migration create_regions_table
 php artisan make:migration create_maps_table
+
+
